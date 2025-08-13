@@ -20,12 +20,14 @@ export default function TicketItem({ ticket, dispatch }) {
       >
         Delete
       </button>
-      {/* <button
+      <button
         className="button"
-        onClick={() => dispatch({ type: "EDIT_TICKET", payload: { id } })}
+        onClick={() =>
+          dispatch({ type: "SET_EDITING_TICKET", payload: ticket })
+        }
       >
         Edit
-      </button> */}
+      </button>
     </div>
   );
 }
