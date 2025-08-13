@@ -42,6 +42,11 @@ export default function TicketForm({ dispatch, editingTicket }) {
     clearForm();
   };
 
+  const handleCancel = () => {
+    dispatch({ type: "CLEAR_EDITING_TICKET" });
+    clearForm();
+  };
+
   return (
     <form className="ticket-form" onSubmit={handleSubmit}>
       <div>
@@ -81,6 +86,11 @@ export default function TicketForm({ dispatch, editingTicket }) {
       <button className="button" type="submit">
         Submit
       </button>
+      {editingTicket && (
+        <button className="button" onClick={handleCancel}>
+          Cancel
+        </button>
+      )}
     </form>
   );
 }
