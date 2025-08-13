@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./styles.css";
+import TicketForm from "./components/TicketForm";
+import ticketReducer from "./reducers/ticketReducer";
+import { useReducer } from "react";
+import TicketList from "./components/TicketList";
 
 function App() {
+  const initialState = { tickets: [] };
+  const [state, dispatch] = useReducer(ticketReducer, initialState);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <h1>Bug Blaster</h1>
+        <TicketForm dispatch={dispatch} />
+
+        {state.tickets.length > 0 && (
+          <div>
+            <h2>All Tickets</h2>
+            <TicketList tickets={state.tickets} dispatch={dispatch} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
